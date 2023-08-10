@@ -27,14 +27,23 @@ export default function Home() {
   }
   console.log(start)
   console.log(answers)
-
+  console.log()
   
   return (
   <main className='homePageReactQuiz'>
     <h1>REACT QUIZ</h1>
     {start ? 
       <div>
-        <h1>Hi</h1>
+        <h4>{answers[0].question}</h4>
+      
+      <ul>
+        <li>{answers[0].correct_answer}</li>
+        {answers[0].incorrect_answers.map((e:any)=>{
+          return <li>{e}</li>
+                  
+
+        })}
+      </ul>
       </div> 
     :
       ''
