@@ -5,8 +5,11 @@ import { useEffect, useState } from 'react'
 
 
 export default function Home() {
-  const [answers, setAnswers] = useState<any>([])
-  const [start, setStart] = useState(false)
+  const [answers, setAnswers] = useState<any>([]);
+  const [start, setStart] = useState(false);
+  const [step, setStep] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [selected, setSelected] = useState(false);
   useEffect(()=>{
     var myHeaders = new Headers();
     myHeaders.append("Cookie", "PHPSESSID=5daffa4220270f4ad0b5041dbbb9ea95");
@@ -22,34 +25,51 @@ export default function Home() {
       .then(result => setAnswers(result.results))
       .catch(error => console.log('error', error));
   },[])
+  const decodeHtml=(html:string)=>{
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+  const handleScore = (type:boolean)=>{
+      if(type){
+        setCorrectCount(correctCount+1)
+      };
+      setSelected(!selected)
+  };
+  const handleStep = ()=>{
+    if(step <= answers.length){
+      setStep(step+1)
+      setSelected(false)
+    };
+  };
   const handleStart = ()=>{
     setStart(!start)
-  }
-  console.log(start)
-  console.log(answers)
-  console.log()
+  };
+  console.log(start);
+  console.log(answers);
+  console.log();
   
   return (
   <main className='homePageReactQuiz'>
     <h1>REACT QUIZ</h1>
-    {start ? 
-      <div>
-        <h4>{answers[0].question}</h4>
-      
-      <ul>
-        <li>{answers[0].correct_answer}</li>
-        {answers[0].incorrect_answers.map((e:any)=>{
-          return <li>{e}</li>
-                  
-
-        })}
-      </ul>
+    {start && answers.length > 0? 
+      <div className='quizSection'>
+        <h4>score: {correctCount}</h4>
+        <h4>{decodeHtml(answers[step].question)}</h4>
+        <ul className='quizList'>
+          <li><button onClick={()=>handleScore(true)} className="quizQuestion" id={selected ? 'quizCorrect' : ''}>{answers[step].correct_answer}</button></li>
+          {answers[step].incorrect_answers.map((e:any)=>{
+            return <li><button onClick={()=>handleScore(false)} className="quizQuestion" id={selected ? 'quizIncorrect': ''}>{e}</button></li>
+          })}
+        </ul>
+        {selected ? <button onClick={handleStep}>Next</button>: ''}
       </div> 
-    :
-      ''
+    :start && answers.length<=0?
+      <h1>Loading...</h1>
+    : ''
     }
     
-    <button onClick={handleStart}>Start</button>
+    {start ? '': <button onClick={handleStart}>Start</button>}
   </main>
   )
 }

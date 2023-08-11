@@ -7,3 +7,25 @@
   flex-direction: column;
   align-items: center;
 }
+.quizSection{
+  padding: 1.5%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 460px;
+  height: fit-content ;
+}
+.quizList{
+  list-style: none;
+  padding: 1%;
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
+}
+.quizQuestion{
+  padding: 0.5%;
+  width: 50%;
+  border-radius: 8px 0 8px;
+  margin: 2%;
+  text-align: center;
+}
