@@ -47,29 +47,31 @@ export default function Home() {
   };
   console.log(start);
   console.log(answers);
-  console.log();
+  console.log(step);
   
   return (
   <main className='homePageReactQuiz'>
-    <h1>REACT QUIZ</h1>
-    {start && answers.length > 0? 
+    <h1 className='quizTitle'>REACT QUIZ</h1>
+    {start && answers.length > 0 && step<=9? 
       <div className='quizSection'>
         <h4>score: {correctCount}</h4>
-        <h4>{decodeHtml(answers[step].question)}</h4>
+        <h4 className='quizQuestionQuestion'>{decodeHtml(answers[step].question)}</h4>
         <ul className='quizList'>
-          <li><button onClick={()=>handleScore(true)} className="quizQuestion" id={selected ? 'quizCorrect' : ''}>{answers[step].correct_answer}</button></li>
+          <li><button onClick={()=>handleScore(true)} className="quizQuestion" id={selected ? 'quizCorrect' : ''} disabled={selected}>{answers[step].correct_answer}</button></li>
           {answers[step].incorrect_answers.map((e:any)=>{
-            return <li><button onClick={()=>handleScore(false)} className="quizQuestion" id={selected ? 'quizIncorrect': ''}>{e}</button></li>
+            return <li><button onClick={()=>handleScore(false)} className="quizQuestion" id={selected ? 'quizIncorrect': ''} disabled={selected}>{e}</button></li>
           })}
         </ul>
-        {selected ? <button onClick={handleStep}>Next</button>: ''}
+        {selected ? <button onClick={handleStep} className='quizPageStartNextButton' id='quizNextButton'>Next</button>: ''}
       </div> 
     :start && answers.length<=0?
       <h1>Loading...</h1>
+    : start && step>=9?  
+          <h1>Thank you for completing our small React Quiz!</h1>
     : ''
     }
     
-    {start ? '': <button onClick={handleStart}>Start</button>}
+    {start ? '': <button onClick={handleStart} className='quizPageStartNextButton'>Start</button>}
   </main>
   )
 }
