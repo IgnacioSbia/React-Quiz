@@ -65,13 +65,13 @@ export default function Home() {
         {selected ? <button onClick={handleStep} className='quizPageStartNextButton' id='quizNextButton'>Next</button>: ''}
       </div> 
     :start && answers.length<=0?
-      <h1>Loading...</h1>
+      <h1 className='quizLoadingScreen'>Loading...</h1>
     : start && step>=9?  
           <h1>Thank you for completing our small React Quiz!</h1>
     : ''
     }
     
-    {start ? '': <button onClick={handleStart} className='quizPageStartNextButton'>Start</button>}
+    {start ? '': <button onClick={handleStart} className='quizPageStartNextButton' id='quizPageStartButton'>Start</button>}
   </main>
   )
 }

@@ -2,10 +2,18 @@
   padding: 0;
   margin: 0;
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 .homePageReactQuiz{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('../../public/PossibleBackground1.gif');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  color: white;
+  height: 100vh;
 }
 .quizQuestionQuestion{
   margin: 2%;
@@ -27,6 +35,7 @@
   border-radius: 10px;
   background-color: blueviolet;
   opacity: 1;
+  
 }
 .quizQuestion{
   padding: 0.5%;
@@ -37,11 +46,24 @@
   color: black;
   background-color: white;
   border: 1px solid rgb(0, 0, 0);
+  font-family: 'Roboto Mono', monospace;
+}
+.quizQuestion:hover{
+  padding: 0.5%;
+  width: 50%;
+  border-radius: 8px 0 8px;
+  margin: 2%;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
+  font-family: 'Roboto Mono', monospace;
 }
 #quizCorrect{
   border: 1px solid green; 
   background-color: green;
   color: white;  
+  color: black;
 }
 
 #quizIncorrect{
@@ -52,6 +74,8 @@
 .quizPageStartNextButton{
   margin: 2%;
   width: 10%;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 8px 0 8px;
 }
 #quizNextButton{
   border-radius: 8px 0 8px;
@@ -59,4 +83,22 @@
   color: white;
   background-color: black;
   width: 40%;
+  height: 35px;
+}
+.quizTitle{
+  font-family: 'Roboto Mono', monospace;
+}
+.quizLoadingScreen{
+  font-family: 'Roboto Mono', monospace;
+}
+#quizPageStartButton{
+  background-color: black;
+  color:white;
+  border: 1px solid white;
+  height: 5%;
+}
+#quizPageStartButton:hover{
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }
